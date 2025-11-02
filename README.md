@@ -21,8 +21,6 @@
   - [/preferences/theme](#preferencestheme)
 - [Валідація, статуси, помилки](#валідація-статуси-помилки)
 - [Приклади (cURL)](#приклади-curl)
-- [Поради та усунення проблем](#поради-та-усунення-проблем)
-- [Що далі (необов’язково)](#що-далі-необовязково)
 
 ---
 
@@ -202,15 +200,6 @@ curl -i -X POST http://localhost:3000/users   -H "Content-Type: application/json
 ```bash
 curl -i -X POST http://localhost:3000/articles   -H "Content-Type: application/json"   -H "Cookie: sid=<…>"   -d '{"title":"Hello from EJS"}'
 ```
-
----
-
-## Поради та усунення проблем
-- Незалогінений доступ до HTML `/users`, `/articles`, `/protected` → редірект на `/` з повідомленням «Unauthorize»; для API → `401 Unauthorize`.
-- У продакшні вмикайте `NODE_ENV=production` — cookie стає `secure=true`, потрібен HTTPS.
-- Дані зберігаються в пам’яті — після перезапуску порожні.
-- Перевіряйте, що `public/favicon.ico` існує, а стилі підключені у `layout.pug`/`layout.ejs`.
-- Якщо DELETE має повертати текст, встановіть `DELETE_MODE=text`.
 
 ---
 

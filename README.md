@@ -214,13 +214,4 @@ curl -i -X POST http://localhost:3000/articles   -H "Content-Type: application/j
 
 ---
 
-## Що далі (необов’язково)
-- Підтримка OAuth (Google, GitHub тощо) через Passport.
-- Відновлення пароля: email-посилання, токени.
-- Перехід на БД (SQLite/Postgres) + ORM (Prisma).
-- Ролі/ACL: admin/editor/user, перевірка прав у мідлварах.
-- Додатковий захист: `helmet`, rate limiting, CSRF.
-
----
-
 Готово! Проєкт працює на **порті 3000**, з **Passport-сесіями**, захищеними сторінками і збереженням теми у cookies.

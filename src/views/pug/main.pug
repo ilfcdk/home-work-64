@@ -1,0 +1,14 @@
+extends layout.pug
+
+block content
+  if msg
+    .flash.error #{msg}
+  .panel
+    h1 Main
+    p Вітаю! Це головна сторінка демо-додатку.
+    p
+      | Перейдіть до 
+      a.link(href='/users') Users
+      |  або 
+      a.link(href='/articles') Articles
+      | .

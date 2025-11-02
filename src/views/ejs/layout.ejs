@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="uk" data-theme="<%= theme || 'light' %>">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title><%= typeof title !== 'undefined' ? title : 'App' %></title>
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/public/css/styles.css" />
+  <!-- ІНЛАЙН-СКРИПТ: надійне встановлення теми за cookie (light/dark/auto) -->
+  <script>
+    (function() {
+      function getCookie(name) {
+        var m = document.cookie.match(new RegExp('(?:^|; )' + name.replace(/([$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + '=([^;]*)'));
+        return m ? decodeURIComponent(m[1]) : null;
+      }
+      var theme = getCookie('theme') || "<%= theme || 'light' %>";
+      if (theme === 'auto') {
+        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+        if (window.matchMedia) {
+          var mq = window.matchMedia('(prefers-color-scheme: dark)');
+          if (mq.addEventListener) {
+            mq.addEventListener('change', function(e){ document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light'); });
+          } else if (mq.addListener) {
+            mq.addListener(function(e){ document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light'); });
+          }
+        }
+      } else {
+        document.documentElement.setAttribute('data-theme', theme);
+      }
+    })();
+  </script>
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="/">Express App</a>
+    <nav>
+      <a href="/users">Users</a>
+      <a href="/articles">Articles</a>
+      <form method="post" action="/preferences/theme" style="display:inline">
+        <select name="theme">
+          <option value="light" <%= (theme==='light') ? 'selected' : '' %>>light</option>
+          <option value="dark" <%= (theme==='dark') ? 'selected' : '' %>>dark</option>
+          <option value="auto" <%= (theme==='auto') ? 'selected' : '' %>>auto</option>
+        </select>
+        <button class="btn inline" type="submit">Set theme</button>
+      </form>
+      <% if (currentUser) { %>
+        <form method="post" action="/auth/logout" style="display:inline">
+          <button class="btn inline" type="submit">Logout (<%= currentUser.role %>)</button>
+        </form>
+      <% } else { %>
+        <a href="/auth/login">Login</a>
+        <a href="/auth/register">Register</a>
+      <% } %>
+    </nav>
+  </header>
+
+  <main class="container">
+    <%- body %>
+  </main>
+
+  <footer class="footer">© <%= new Date().getFullYear() %> — Demo</footer>
+</body>
+</html>

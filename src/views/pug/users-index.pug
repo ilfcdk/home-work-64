@@ -1,0 +1,33 @@
+extends layout.pug
+
+block content
+  if msg
+    .flash.success #{msg}
+  h1 Users
+  if users.length
+    ul.list
+      each u in users
+        li
+          a.link(href=`/users/${u.id}`) #{u.name || (u.surname + ' ' + u.firstName)}
+          if u.email
+            span  · 
+            span #{u.email}
+  else
+    .panel Наразі користувачів немає.
+
+  .panel
+    h2 Додати користувача
+    form(method='post', action='/users')
+      .form-group
+        label.muted(for='surname') Прізвище
+        input#surname.input(type='text', name='surname', required)
+      .form-group
+        label.muted(for='firstName') Ім'я
+        input#firstName.input(type='text', name='firstName', required)
+      .form-group
+        label.muted(for='email') Email
+        input#email.input(type='email', name='email', placeholder='you@example.com')
+      .form-group
+        label.muted(for='info') Додаткова інформація
+        textarea#info.input(name='info', placeholder='Нотатки…')
+      button.btn(type='submit') Створити

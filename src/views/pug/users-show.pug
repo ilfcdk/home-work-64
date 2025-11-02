@@ -1,0 +1,30 @@
+extends layout.pug
+
+block content
+  h1 User ##{user.id}
+  .grid
+    .col-6
+      .card
+        h3 Загальна інформація
+        p strong Імʼя: 
+          | #{user.name || (user.surname + ' ' + user.firstName)}
+        if user.email
+          p strong Email: 
+            | #{user.email}
+        if user.info
+          p strong Info:
+          p #{user.info}
+    .col-6
+      .card
+        h3 API приклади
+        p
+          | GET: 
+          code /users/#{user.id}
+        p
+          | PUT: 
+          code /users/#{user.id}
+        p
+          | DELETE: 
+          code /users/#{user.id}
+  p
+    a.link(href='/users') ← Назад до списку

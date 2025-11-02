@@ -1,0 +1,16 @@
+<h1>Article #<%= article.id %></h1>
+<div class="panel">
+  <p>
+    <strong>Title:</strong>
+  </p>
+  <p><%= article.title %></p>
+</div>
+
+<div class="panel">
+  <h2>API приклади</h2>
+  <p>GET: <code>/articles/<%= article.id %></code></p>
+  <p>PUT: <code>/articles/<%= article.id %></code></p>
+  <p>DELETE: <code>/articles/<%= article.id %></code></p>
+</div>
+
+<p><a class="link" href="/articles">← Назад до списку</a></p>

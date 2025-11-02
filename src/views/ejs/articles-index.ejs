@@ -1,0 +1,29 @@
+<% if (typeof msg === 'string' && msg) { %>
+  <div class="flash success"><%= msg %></div>
+<% } %>
+
+<h1>Articles</h1>
+
+<% if (articles && articles.length) { %>
+  <ul class="list">
+  <% for (const a of articles) { %>
+    <li>
+      <a class="link" href="/articles/<%= a.id %>">#<%= a.id %></a>
+      &nbsp;—&nbsp;<strong><%= a.title %></strong>
+    </li>
+  <% } %>
+  </ul>
+<% } else { %>
+  <div class="panel">Наразі статей немає.</div>
+<% } %>
+
+<div class="panel">
+  <h2>Додати статтю</h2>
+  <form method="post" action="/articles">
+    <div class="form-group">
+      <label class="muted" for="title">Назва/вміст</label>
+      <textarea id="title" class="input" name="title" required placeholder="Текст статті..."></textarea>
+    </div>
+    <button class="btn" type="submit">Створити</button>
+  </form>
+</div>

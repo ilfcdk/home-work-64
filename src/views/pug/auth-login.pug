@@ -1,0 +1,19 @@
+extends layout.pug
+
+block content
+  if msg
+    .flash.success #{msg}
+  h1 Login
+  .panel
+    form(method='post', action='/auth/login')
+      .form-group
+        label.muted(for='email') Email
+        input#email.input(type='email', name='email', required, placeholder='you@example.com')
+      .form-group
+        label.muted(for='password') Password
+        input#password.input(type='password', name='password', required)
+      button.btn(type='submit') Sign in
+  p.muted
+    | Не маєш акаунта?
+    | 
+    a.link(href='/auth/register') Зареєструватись →

@@ -1,0 +1,22 @@
+extends layout.pug
+
+block content
+  if msg
+    .flash.success #{msg}
+  h1 Register
+  .panel
+    form(method='post', action='/auth/register')
+      .form-group
+        label.muted(for='email') Email
+        input#email.input(type='email', name='email', required, placeholder='you@example.com')
+      .form-group
+        label.muted(for='password') Password
+        input#password.input(type='password', name='password', required)
+      .form-group
+        label.muted(for='role') Role (user/admin/editor)
+        input#role.input(type='text', name='role', placeholder='user')
+      button.btn(type='submit') Create account
+  p.muted
+    | Вже є акаунт?
+    | 
+    a.link(href='/auth/login') Увійти →
